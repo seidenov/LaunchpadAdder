@@ -57,4 +57,22 @@ cat > "build/LaunchpadAdder.app/Contents/Info.plist" << EOF
 </plist>
 EOF
 
-echo "Сборка успешно завершена. Приложение находится в директории build/LaunchpadAdder.app" 
+# Устанавливаем правильные права доступа
+chmod +x "build/LaunchpadAdder.app/Contents/MacOS/LaunchpadAdder"
+
+# Создаем пустой файл PkgInfo
+echo "APPL????" > "build/LaunchpadAdder.app/Contents/PkgInfo"
+
+# Подписываем приложение с опцией ad-hoc (для локального использования)
+codesign --force --deep --sign - "build/LaunchpadAdder.app"
+
+# Проверяем подпись
+codesign -vv "build/LaunchpadAdder.app"
+
+# Создаем архив с приложением
+cd build
+zip -r ../LaunchpadAdder.zip LaunchpadAdder.app
+cd ..
+
+echo "Сборка успешно завершена. Приложение находится в директории build/LaunchpadAdder.app"
+echo "Архив с приложением: LaunchpadAdder.zip" 
