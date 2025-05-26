@@ -58,4 +58,4 @@ MIT © 2025 seidenov
 
 ## Автор
 
-seidenov - [GitHub](https://github.com/seidenov) 
+seidenov - [GitHub](https://github.com/seidenov)
